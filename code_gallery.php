@@ -1,11 +1,26 @@
 <?php 
 /*
-Plugin Name: Code Pixelz Gallery
+Plugin Name: Code Pixelz Gallery Plugin
 Plugin URI: http://codepixelzmedia.com.np
-Description: Simple Gallery Plugin
+Description: Simple Gallery Plugin. Easy to use gallery plugin that lets you add gallery feature to your website. Supports 3 lightbox types and shortcodes to display your gallery images anywhere.
 Author: Code Pixelz Media
 Version: 1.0
-Author URI: http://www.vishalbasnet23.com
+Author URI: http://www.codepixelzmedia.com.np
+*/
+/*  Copyright 2014  codepixelzmedia  (email : info@codepixelzmedia.com.np)
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License, version 2, as 
+    published by the Free Software Foundation.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 /******************************************************************/
 /*         Enqueuing custom javascript and stylesheets            */ 
