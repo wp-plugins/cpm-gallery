@@ -12,7 +12,7 @@ Add gallery feature to your website. Supports lightbox and shortcodes to display
 
 == Description ==
 
-Simple Gallery Plugin. Easy to use gallery plugin that lets you add gallery feature to your website. Supports 3 lightbox types and shortcodes to display your gallery images anywhere.
+Simple Gallery Plugin. Easy to use gallery plugin that lets you add gallery feature to your website. Supports lightbox and shortcodes to display your gallery images anywhere.
 
 == Installation ==
 

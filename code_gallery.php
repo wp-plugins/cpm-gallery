@@ -310,3 +310,23 @@ function display_code_gallery($atts) {
 
 <?php }
 add_shortcode('code_gallery', 'display_code_gallery');
+/**********************************************************/
+/* 	       Adding ShortCode Display Meta Box		      */
+/**********************************************************/
+
+add_action('add_meta_boxes', 'cp_gallery_shortcode_display_box');  
+function cp_gallery_shortcode_display_box() {    
+    add_meta_box(  
+        'gallery-shortcode',  
+        __('Paste This Shortcode','_cp'),  
+        'code_gallery_shortcode_display',  
+        'code_gallery',  
+        'side'  
+    );  
+      
+  
+}  
+function code_gallery_shortcode_display() {
+	global $post;
+	echo '[code_gallery gallery_id="'.$post->ID.'"]';
+} 
