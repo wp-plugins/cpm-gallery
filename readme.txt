@@ -1,6 +1,6 @@
 === Plugin Name ===
 Contributors: utsavsinghrathour, codepixelzmedia, vishalbasnet23
-Tags: gallery, photo gallery, image gallery, lightbox, shortcode
+Tags: gallery, photo gallery, image gallery, lightbox, shortcode, simple gallery, image slider, picture gallery, add album, add gallery, add picture, add pictures, album, foto, fotoalbum, galery, gallary, gallery, gallery image, image, multiple pictures, photo, photoalbum, photogallery, pictures, slide show, slideshow, upload images, upload photos, view images, website gallery, responsive gallery
 Requires at least: 3.9
 Tested up to: 4.0.1
 Stable tag: 1.0
