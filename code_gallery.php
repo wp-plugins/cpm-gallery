@@ -1,6 +1,6 @@
 <?php 
 /*
-Plugin Name: Code Pixelz Gallery Plugin
+Plugin Name: Code Pixelz Simple Responsive Image Gallery Plugin
 Plugin URI: http://codepixelzmedia.com.np
 Description: Simple Gallery Plugin. Easy to use gallery plugin that lets you add gallery feature to your website. Supports 3 lightbox types and shortcodes to display your gallery images anywhere.
 Author: Code Pixelz Media
@@ -26,15 +26,15 @@ Author URI: http://www.codepixelzmedia.com.np
 /*         Enqueuing custom javascript and stylesheets            */ 
 /******************************************************************/
 
-add_action('admin_enqueue_scripts', 'my_admin_scripts');
-function my_admin_scripts() {
+add_action('admin_enqueue_scripts', 'cpm_gallery_admin_scripts');
+function cpm_gallery_admin_scripts() {
     wp_enqueue_media();
     wp_register_script('my-admin-js', plugins_url('/js/upload.js',__FILE__), array('jquery'));
     wp_enqueue_script('my-admin-js');
  	wp_enqueue_style( 'code-gallery', plugins_url('/css/codegallery.css',__FILE__) );
 }
-add_action( 'wp_enqueue_scripts', 'frontend_script_load' );
-function frontend_script_load() {
+add_action( 'wp_enqueue_scripts', 'cpm_gallery_frontend_script_load' );
+function cpm_gallery_frontend_script_load() {
     wp_enqueue_style( 'code-gallery', plugins_url('/css/codegallery.css',__FILE__) );
     wp_enqueue_style('blueimp-gallery-min',plugins_url('/css/blueimp-gallery.min.css',__FILE__));
     wp_enqueue_style('blueimp-gallery-indicator',plugins_url('/css/blueimp-gallery-indicator.css',__FILE__));
@@ -48,9 +48,9 @@ function frontend_script_load() {
 /*        Registering post type       */
 /**************************************/
 
-add_action('init','register_post_type_gallery');
+add_action('init','cpm_gallery_register_post_type_gallery');
 
-function register_post_type_gallery() {
+function cpm_gallery_register_post_type_gallery() {
  	$labels = array(
 		'name'               => __('Gallery','_cp'),
 	    'singular_name'      => __('Gallery','_cp'),
@@ -85,9 +85,9 @@ function register_post_type_gallery() {
 /**********************************************************/
 /* Customizing Message Output of code_gallery Post Type   */
 /**********************************************************/
-add_filter( 'post_updated_messages', 'code_gallery_updated_messages' );
+add_filter( 'post_updated_messages', 'cpm_gallery_updated_messages' );
 
-function code_gallery_updated_messages( $messages ) {
+function cpm_gallery_updated_messages( $messages ) {
 	$post             = get_post();
 	$post_type        = get_post_type( $post );
 	$post_type_object = get_post_type_object( $post_type );
@@ -131,9 +131,9 @@ function code_gallery_updated_messages( $messages ) {
 /*****************************************/
 /*         CONTEXTUAL HELP TEXT          */
 /*****************************************/
-add_action( 'contextual_help', 'code_gallery_contextual_help', 10, 3 );
+add_action( 'contextual_help', 'cpm_gallery_contextual_help', 10, 3 );
 
-function code_gallery_contextual_help( $contextual_help, $screen_id, $screen ) { 
+function cpm_gallery_contextual_help( $contextual_help, $screen_id, $screen ) { 
 	if ( 'code_gallery' == $screen->id ) {
 
 	    $contextual_help = '<h2>'.__('Editing Gallery','_cp').'</h2>
@@ -154,8 +154,8 @@ function code_gallery_contextual_help( $contextual_help, $screen_id, $screen ) {
 /*                       Adding Images Meta Boxes                        */
 /*************************************************************************/
 
-add_action('add_meta_boxes', 'add_images_meta_boxes');  
-function add_images_meta_boxes() {    
+add_action('add_meta_boxes', 'cpm_gallery_add_images_meta_boxes');  
+function cpm_gallery_add_images_meta_boxes() {    
     // Define the images attachment for gallery  
     add_meta_box(  
         'code-gallery-attachment',  
@@ -171,11 +171,11 @@ function add_images_meta_boxes() {
 /********************************************************************************/
 /*                            Displaying image upload Fields                    */
 /********************************************************************************/
-//static $i = 1;
-$k = 1;
-$j = 1;
-$m = 1;
+
 function code_gallery_attachment() {
+	$k = 1;
+	$j = 1;
+	$m = 1;
 	global $post;
 	$i =1;
 	 wp_nonce_field(plugin_basename(__FILE__), 'code_gallery_attachment_nonce');
@@ -190,7 +190,9 @@ function code_gallery_attachment() {
     ?>
     <?php if(  sizeof($gallery_images) > 0  ){?>
     <div id="togglediv">
-    <?php if($gallery_images[0]!= NULL){foreach ($gallery_images[0] as $key=>$value ) {
+    <?php 
+
+    	if($gallery_images[0]!= NULL){foreach ($gallery_images[0] as $key=>$value ) {
     	if($value != NULL){?>
     	<input class="images" type="hidden" id="firstimage<?php echo $i?>" name="code_gallery_attachment[]"value="<?php echo $value;?>" />
     	<div class="editthumb" id="imagediv<?php echo $i;?>">
@@ -225,20 +227,20 @@ add_action('save_post', 'code_save_images_meta', 1, 2); // save the custom field
 function code_save_images_meta($post_id, $post) {
 	// verify this came from the our screen and with proper authorization,
 	//because save_post can be triggered at other times
-	 // if ( !wp_verify_nonce( $_POST['jit_gallery_attachment'], plugin_basename(__FILE__) )) {
-	 // return $post->ID;
-	 // }
+	 
 	// Is the user allowed to edit the post or page?
 	if ( !current_user_can( 'edit_post', $post->ID ))
 		return $post->ID;
+
 	// OK, we're authenticated: we need to find and save the data
 	// We'll put it into an array to make it easier to loop though.
 	if( isset( $_POST['code_gallery_attachment']) ) :
 		$gallery_meta['images'] = $_POST['code_gallery_attachment'];
+		
 	// Add values of $gallery_meta as custom fields
 	foreach ($gallery_meta as $key => $value) { // Cycle through the $gallery_meta array!
 		if( $post->post_type == 'revision' ) return; // Don't store custom data twice
-		$value = implode(',', (array)$value); // If $value is an array, make it a CSV (unlikely)
+			$value = implode(',', (array)$value); // If $value is an array, make it a CSV (unlikely)
 		if(get_post_meta($post->ID, $key, FALSE)) { // If the custom field already has a value
 			update_post_meta($post->ID, $key, $value);
 		} else { // If the custom field doesn't have a value
@@ -277,23 +279,24 @@ function display_code_gallery($atts) {
 	 $galleryimages = get_post_meta($gallery_id,'code_gallery_images');
 	?>
 	<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
-			    <div class="slides"></div>
-			    <h3 class="title"></h3>
-			    <a class="prev">‹</a>
-			    <a class="next">›</a>
-			    <a class="close">×</a>
-			    <a class="play-pause"></a>
-			    <ol class="indicator"></ol>
-			</div>
+		<div class="slides"></div>
+		<h3 class="title"></h3>
+		<a class="prev">‹</a>
+		<a class="next">›</a>
+		<a class="close">×</a>
+		<a class="play-pause"></a>
+		<ol class="indicator"></ol>
+	</div>
 	<div class="container">
-	<h2><?php the_title();?></h2>
-		<div class="row imgdiv" id="links">
+
+	
+		<div class="imgdiv" id="links">
 
 			<?php  if($galleryimages[0]!= NULL){foreach ($galleryimages[0] as $key=>$value ) {
 				if($value != NULL){?>
-					<a href="<?php echo $value;?>" >
-						<img class="col-sm-3" src="<?php echo $value;?>" >
-					</a>
+					<div class="images"><a href="<?php echo $value;?>" >
+						<img src="<?php echo $value;?>" >
+					</a></div>
 			<?php }}}?>
 		</div>
 	</div>
@@ -310,6 +313,8 @@ function display_code_gallery($atts) {
 
 <?php }
 add_shortcode('code_gallery', 'display_code_gallery');
+
+
 /**********************************************************/
 /* 	       Adding ShortCode Display Meta Box		      */
 /**********************************************************/

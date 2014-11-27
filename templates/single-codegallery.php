@@ -13,14 +13,15 @@
 			    <ol class="indicator"></ol>
 			</div>
 	<div class="container">
-	<h2><?php the_title();?></h2>
-		<div class="row imgdiv" id="links">
+	<h2><?php the_title(); ?>
+	
+		<div class="imgdiv" id="links">
 
 			<?php  if($galleryimages[0]!= NULL){foreach ($galleryimages[0] as $key=>$value ) {
 				if($value != NULL){?>
-					<a href="<?php echo $value;?>" >
-						<img class="col-sm-3" src="<?php echo $value;?>" >
-					</a>
+					<div class="images"><a href="<?php echo $value;?>" >
+						<img src="<?php echo $value;?>" >
+					</a></div>
 			<?php }}}?>
 		</div>
 	</div>
