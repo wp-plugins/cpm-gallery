@@ -4,7 +4,7 @@ Plugin Name: Code Pixelz Simple Responsive Image Gallery Plugin
 Plugin URI: http://codepixelzmedia.com.np
 Description: Simple Gallery Plugin. Easy to use gallery plugin that lets you add gallery feature to your website. Supports 3 lightbox types and shortcodes to display your gallery images anywhere.
 Author: Code Pixelz Media
-Version: 2.0
+Version: 2.1
 Author URI: http://www.codepixelzmedia.com.np
 */
 /*  Copyright 2014  codepixelzmedia  (email : info@codepixelzmedia.com.np)

@@ -3,7 +3,7 @@ Contributors: utsavsinghrathour, codepixelzmedia, vishalbasnet23
 Tags: gallery, photo gallery, image gallery, lightbox, shortcode, simple gallery, image slider, picture gallery, add album, add gallery, add picture, add pictures, album, foto, fotoalbum, galery, gallary, gallery, gallery image, image, multiple pictures, photo, photoalbum, photogallery, pictures, slide show, slideshow, upload images, upload photos, view images, website gallery, responsive gallery
 Requires at least: 3.9
 Tested up to: 4.0.1
-Stable tag: 2.0
+Stable tag: 2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
