@@ -1,23 +1,7 @@
-#links a {
-	border: 1px solid #ddd;
-	width: 200px;
-	height: 200px;
-	margin-right: 20px;
-	margin-top: 20px;
-	margin-bottom: 20px;
-	display:inline-block;
-	overflow:hidden;
-}
-
-#links img {
-	width: 100%;
-	height: auto;
-}
-
 .editthumb img {
-	width: 100px;
-	margin-top: 10px;
-	border:1px solid #ddd;
+  width: 100px;
+  margin-top: 10px;
+  border:1px solid #ddd;
 }
 
 .glyphicon-remove:before {
@@ -44,12 +28,12 @@
 }
 
 .removebtn a {
-	text-decoration: none;
+  text-decoration: none;
 }
 
 .imageholder {
-	float: left;
-	margin-right: 5px;
+  float: left;
+  margin-right: 5px;
 }
 
 .taximgdiv img{
@@ -91,3 +75,25 @@
   opacity: 1; 
 }
 
+  .images{
+    width: 23.5%;
+    float: left;
+    margin:5px;
+  }
+  .images img {
+    max-width: 100%;
+  }
+@media all and (max-width: 768px) and (min-width: 520px) {
+  .images{
+    width: 30.8%;
+    float: left;
+    margin:5px;
+  }
+}
+
+@media all and (max-width: 519px)  {
+  .images{
+    width: 100%%;
+    float: left;
+  }
+}
