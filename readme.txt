@@ -2,8 +2,10 @@
 Contributors: utsavsinghrathour, codepixelzmedia, vishalbasnet23
 Tags: gallery, photo gallery, image gallery, lightbox, shortcode, simple gallery, image slider, picture gallery, add album, add gallery, add picture, add pictures, album, foto, fotoalbum, galery, gallary, gallery, gallery image, image, multiple pictures, photo, photoalbum, photogallery, pictures, slide show, slideshow, upload images, upload photos, view images, website gallery, responsive gallery
 Requires at least: 3.9
-Tested up to: 4.1
-Stable tag: 2.1
+
+Tested up to: 4.2.4
+Stable tag: 2.2
+
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -24,6 +26,7 @@ e.g.
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. You are good to go.
 
+
 == Screenshots ==
 
 1. This shows the default look of the gallery. 
@@ -33,3 +36,4 @@ e.g.
 
 * 1.0: First release.
 * 2.0: Major changes. Undefined Variable issue solved. Gallery is now responsive.Layout issues fixed. Border and fixed height removed.
+* 2.2: Added shortcode panel for easier copying on the admin post
